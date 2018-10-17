@@ -33,6 +33,8 @@ class ViewController: UIViewController {
         db = Firestore.firestore()
         //Firestoreからデータの呼び出し
         readData()
+        //キーボードをしまうボタン追加
+        keyboad()
         
     }
     
@@ -158,8 +160,23 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
     }
 }
 
-
-
+//キーボード追加
+extension ViewController{
+    func keyboad(){
+        let kbToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        kbToolBar.barStyle = UIBarStyle.default  // スタイルを設定
+        kbToolBar.sizeToFit()  // 画面幅に合わせてサイズを変更
+        // スペーサー
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        // 閉じるボタン
+        let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action:#selector(self.closeKeybord(_:)))
+        kbToolBar.items = [spacer, commitButton]
+        todoTextField.inputAccessoryView = kbToolBar
+    }
+    @objc func closeKeybord(_ sender:Any){
+        self.view.endEditing(true)
+    }
+}
 
 
 
