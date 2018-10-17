@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,9 +28,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y27-uo-xG6">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y27-uo-xG6">
                                             <rect key="frame" x="8" y="100" width="359" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="y27-uo-xG6" secondAttribute="height" multiplier="359:30" id="ePl-mK-0gD"/>
+                                            </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -61,10 +64,12 @@
                                                 <action selector="read:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jjg-DL-25E"/>
                                             </connections>
                                         </button>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OJ3-mI-kcd">
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OJ3-mI-kcd">
                                             <rect key="frame" x="8" y="231" width="359" height="428"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="428" id="uMN-Ax-NLd"/>
+                                            </constraints>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="BmZ-qn-gkJ">
                                                     <rect key="frame" x="0.0" y="28" width="359" height="44"/>
@@ -81,6 +86,15 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="y27-uo-xG6" secondAttribute="trailing" constant="8" id="890-Fq-Gs4"/>
+                                        <constraint firstAttribute="bottom" secondItem="OJ3-mI-kcd" secondAttribute="bottom" constant="8" id="JCE-qz-KhJ"/>
+                                        <constraint firstItem="OJ3-mI-kcd" firstAttribute="leading" secondItem="eMf-CQ-4Rg" secondAttribute="leading" constant="8" id="PGQ-7s-Md6"/>
+                                        <constraint firstItem="y27-uo-xG6" firstAttribute="top" secondItem="eMf-CQ-4Rg" secondAttribute="top" constant="100" id="SZY-Sf-Wga"/>
+                                        <constraint firstAttribute="trailing" secondItem="OJ3-mI-kcd" secondAttribute="trailing" constant="8" id="Vxd-f4-SmR"/>
+                                        <constraint firstItem="OJ3-mI-kcd" firstAttribute="top" secondItem="y27-uo-xG6" secondAttribute="bottom" constant="101" id="lWP-zz-7ES"/>
+                                        <constraint firstItem="y27-uo-xG6" firstAttribute="leading" secondItem="eMf-CQ-4Rg" secondAttribute="leading" constant="8" id="zVy-Ta-zHl"/>
+                                    </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
