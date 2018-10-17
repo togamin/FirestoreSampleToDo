@@ -83,8 +83,14 @@ extension ViewController{
         }
     }
     //データ更新
-    func update(){
-        
+    func update(id:String,data:[String:Any]){
+        db.collection("ToDoList").document(id).setData(data){ err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
     }
     //データ削除
     func delete(id:String){
@@ -101,7 +107,7 @@ extension ViewController{
 
 
 
-
+//テーブルに関する関数。
 extension ViewController: UITableViewDelegate,UITableViewDataSource{
     
     //セルの数
@@ -126,6 +132,29 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         }
         deleteCell.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.8)
         return [deleteCell]
+    }
+    //セルをタップした時に呼ばれる処理。
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //アラートの設定
+        let alert = UIAlertController(title: "データを編集します", message: nil, preferredStyle: .alert)
+        //OKボタン
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action:UIAlertAction!) -> Void in
+            //OKを押した後の処理。
+            var data = ["todo":alert.textFields![0].text]
+            self.update(id:self.idList[indexPath.row],data: data)
+        }))
+        //キャンセルボタン
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: {(action:UIAlertAction!) -> Void in
+            //キャンセルを押した後の処理。
+        }))
+        // テキストフィールドを追加。
+        alert.addTextField(configurationHandler: {(addTitleField: UITextField!) -> Void in
+            addTitleField.text = self.todoList[indexPath.row]
+            addTitleField.placeholder = "タイトルを入力してください。"//プレースホルダー
+        })
+        //その他アラートオプション
+        alert.view.layer.cornerRadius = 25 //角丸にする。
+        self.present(alert,animated: true,completion: {()->Void in print("アラート表示")})
     }
 }
 
