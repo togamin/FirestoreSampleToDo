@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     @IBAction func create(_ sender: UIButton) {
         var data = ["todo":todoTextField.text!]
         creatData(data:data)
+        readData()
     }
     
     //Firestoreからのデータの読み込み
@@ -131,6 +132,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         let deleteCell: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除"){ (action, index) -> Void in
             //データの削除処理
             self.delete(id:self.idList[indexPath.row])
+            self.readData()
         }
         deleteCell.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.8)
         return [deleteCell]
@@ -144,6 +146,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
             //OKを押した後の処理。
             var data = ["todo":alert.textFields![0].text]
             self.update(id:self.idList[indexPath.row],data: data)
+            self.readData()
         }))
         //キャンセルボタン
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: {(action:UIAlertAction!) -> Void in
