@@ -92,7 +92,6 @@
                                         <constraint firstItem="OJ3-mI-kcd" firstAttribute="leading" secondItem="eMf-CQ-4Rg" secondAttribute="leading" constant="8" id="PGQ-7s-Md6"/>
                                         <constraint firstItem="y27-uo-xG6" firstAttribute="top" secondItem="eMf-CQ-4Rg" secondAttribute="top" constant="100" id="SZY-Sf-Wga"/>
                                         <constraint firstAttribute="trailing" secondItem="OJ3-mI-kcd" secondAttribute="trailing" constant="8" id="Vxd-f4-SmR"/>
-                                        <constraint firstItem="OJ3-mI-kcd" firstAttribute="top" secondItem="y27-uo-xG6" secondAttribute="bottom" constant="101" id="lWP-zz-7ES"/>
                                         <constraint firstItem="y27-uo-xG6" firstAttribute="leading" secondItem="eMf-CQ-4Rg" secondAttribute="leading" constant="8" id="zVy-Ta-zHl"/>
                                     </constraints>
                                 </view>

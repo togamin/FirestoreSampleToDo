@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         
         //Firestoreのインスタンス化
         db = Firestore.firestore()
+        //Firestoreからデータの呼び出し
+        readData()
         
     }
     
@@ -65,6 +67,8 @@ extension ViewController{
     }
     //データ読み込み
     func readData(){
+        todoList = []
+        idList = []
         //ToDoListの中のドキュメントを全て取得し、idとtodoを取得。取得後テーブルをリロード。
         db.collection("ToDoList").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -83,8 +87,14 @@ extension ViewController{
         
     }
     //データ削除
-    func delete(){
-        
+    func delete(id:String){
+        db.collection("ToDoList").document(id).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
     }
 }
 
@@ -107,7 +117,23 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         
         return cell
     }
-    
-    
+    //セルを横にスライドさせた時に呼ばれる
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        //データの削除用ボタン
+        let deleteCell: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除"){ (action, index) -> Void in
+            //データの削除処理
+            self.delete(id:self.idList[indexPath.row])
+        }
+        deleteCell.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.8)
+        return [deleteCell]
+    }
 }
+
+
+
+
+
+
+
+
 
